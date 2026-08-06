@@ -39,6 +39,17 @@ function response(body, status = 200, headers = {}) {
   return new Response(JSON.stringify(body), { status, headers: { 'content-type': 'application/json; charset=utf-8', 'cache-control': 'no-store, max-age=0', ...headers } });
 }
 function empty(headers = {}) { return new Response(null, { status: 204, headers: { 'cache-control': 'no-store, max-age=0', ...headers } }); }
+function operationalErrorMessage(error) {
+  const code = String(error?.code || '');
+  const message = String(error?.message || '');
+  if (message.includes('SUPABASE_DB_URL is not configured')) return 'Database connection is not configured in Netlify. Add SUPABASE_DB_URL with Functions scope, then redeploy.';
+  if (code === '28P01' || /password authentication failed/i.test(message)) return 'Supabase database authentication failed. Check the database password in SUPABASE_DB_URL, then redeploy.';
+  if (code === '3D000') return 'The database named in SUPABASE_DB_URL does not exist.';
+  if (['ENOTFOUND', 'EAI_AGAIN'].includes(code)) return 'The Supabase database host could not be found. Check the Transaction Pooler hostname in SUPABASE_DB_URL.';
+  if (['ECONNREFUSED', 'ETIMEDOUT', '57P01'].includes(code)) return 'The Supabase database could not be reached. Check the Transaction Pooler connection string and database availability.';
+  if (code === 'SELF_SIGNED_CERT_IN_CHAIN') return 'The database TLS connection was rejected. Deploy the latest SecureGate Netlify function.';
+  return '';
+}
 function cookies(request) {
   return Object.fromEntries((request.headers.get('cookie') || '').split(';').map((part) => {
     const index = part.indexOf('='); return index < 0 ? [] : [part.slice(0, index).trim(), decodeURIComponent(part.slice(index + 1).trim())];
@@ -337,6 +348,8 @@ export default async function handler(request, context) {
     if (error instanceof ApiError) return response({ error: error.message }, error.status);
     console.error('SecureGate API error', error);
     if (error?.code === '42703' || error?.code === '42P01' || error?.code === '23514') return response({ error: 'Database upgrade required. Run the latest Supabase migration, then try again.' }, 503);
+    const operationalMessage = operationalErrorMessage(error);
+    if (operationalMessage) return response({ error: operationalMessage }, 503);
     return response({ error: 'The server could not complete this request.' }, 500);
   }
 }
