@@ -283,8 +283,8 @@ async function api(path, options={}){
  if(options.body!==undefined)headers.set('Content-Type','application/json');
  if(!['GET','HEAD'].includes(method)&&path!=='/api/auth/login'&&state.csrfToken)headers.set('X-CSRF-Token',state.csrfToken);
  const response=await fetch(path,{method,headers,body:options.body===undefined?undefined:JSON.stringify(options.body),credentials:'same-origin'});
- const payload=response.headers.get('content-type')?.includes('application/json')?await response.json():null;
- if(!response.ok){const error=new Error(payload?.error||'The request could not be completed.');error.status=response.status;if(error.status===401&&state.currentUser)showLogin(false);throw error;}
+ const raw=await response.text();let payload=null;try{payload=raw?JSON.parse(raw):null;}catch{}
+ if(!response.ok){const text=raw.replace(/<[^>]*>/g,' ').replace(/\s+/g,' ').trim();const error=new Error(payload?.error||text||`Request failed (HTTP ${response.status}).`);error.status=response.status;if(error.status===401&&state.currentUser)showLogin(false);throw error;}
  return payload;
 }
 function showLogin(focus=true){state.currentUser=null;state.currentUserId=null;state.csrfToken=null;$('#appShell').hidden=true;$('#loginScreen').hidden=false;$('#loginPassword').value='';if(focus)$('#loginId').focus();}
