@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0b64e5" />
+    <title>SecureGate | Security Management</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <section class="login-screen" id="loginScreen">
+      <div class="login-card"><div class="login-brand"><span class="logo-mark"><i data-icon="shield"></i></span><span><strong>Secure<span>Gate</span></strong><small>SECURITY MANAGEMENT</small></span></div><div><p class="eyebrow">SECURE ACCESS</p><h1>Sign in to your workspace</h1><p>Use your assigned login ID and password.</p></div><form id="loginForm"><label>Login ID<input id="loginId" autocomplete="username" required placeholder="Enter login ID" /></label><label>Password<input id="loginPassword" type="password" autocomplete="current-password" required placeholder="Enter password" /></label><p class="login-error" id="loginError" role="alert"></p><button class="button button-primary" type="submit">Sign in</button></form></div>
+    </section>
+    <div class="app-shell" id="appShell" hidden>
+      <aside class="sidebar" id="sidebar">
+        <div class="brand">
+          <div class="logo-mark"><i data-icon="shield"></i></div>
+          <div><strong>Secure<span>Gate</span></strong><small>SECURITY MANAGEMENT</small></div>
+        </div>
+
+        <nav class="primary-nav" aria-label="Primary navigation">
+          <button class="nav-item active" data-page="dashboard"><i data-icon="grid"></i><span>Overview</span></button>
+          <button class="nav-item" data-page="attendance"><i data-icon="clock"></i><span>Attendance</span></button>
+          <button class="nav-item" data-page="inward"><i data-icon="arrow-down-left"></i><span>Inward</span><em>8</em></button>
+          <button class="nav-item" data-page="outward"><i data-icon="arrow-up-right"></i><span>Outward</span></button>
+          <button class="nav-item" data-page="records"><i data-icon="folder"></i><span>Records</span></button>
+        </nav>
+
+        <div class="sidebar-foot">
+          <div class="help-card"><i data-icon="headset"></i><div><b>Need help?</b><span>Contact control room</span></div></div>
+          <button class="nav-item" data-page="settings"><i data-icon="settings"></i><span>Settings</span></button>
+          <button class="profile-mini" data-action="profile"><span class="avatar avatar-sm" id="sidebarProfileAvatar">RK</span><span><b id="sidebarProfileName">Rahul Kumar</b><small id="sidebarProfileRole">Security Guard · Mumbai Warehouse</small></span><i data-icon="chevron-down"></i></button>
+        </div>
+      </aside>
+
+      <main class="main-content">
+        <header class="topbar">
+          <button class="menu-toggle icon-button" aria-label="Toggle menu"><i data-icon="menu"></i></button>
+          <div class="mobile-brand">Secure<span>Gate</span></div>
+          <label class="global-search"><i data-icon="search"></i><input id="globalSearch" type="search" placeholder="Search visitors, passes, vehicles..." /><kbd>⌘ K</kbd></label>
+          <div class="topbar-actions">
+            <button class="icon-button theme-toggle" aria-label="Toggle dark mode"><i data-icon="moon"></i></button>
+            <button class="icon-button notification-button" aria-label="Notifications"><i data-icon="bell"></i><span></span></button>
+            <div class="top-profile"><span class="avatar" id="topProfileAvatar">RK</span><span><b id="topProfileName">Rahul Kumar</b><small id="topProfileDetail">Security Guard · Mumbai Warehouse</small></span></div>
+          </div>
+        </header>
+
+        <section class="page active" id="dashboard">
+          <div class="page-heading">
+            <div><p class="eyebrow" id="dashboardGreeting">GOOD MORNING, RAHUL</p><h1>Security control center</h1><p class="subhead" id="dashboardScope">Mumbai Warehouse access</p></div>
+            <div class="date-panel"><i data-icon="calendar"></i><div><b id="currentDate">Friday, 11 July 2026</b><span id="currentTime">09:42:16 AM</span></div></div>
+          </div>
+
+          <section class="attendance-strip" id="attendanceStrip">
+            <div class="attendance-icon"><i data-icon="fingerprint"></i></div>
+            <div class="attendance-copy"><span>YOUR ATTENDANCE</span><h3>Ready to start your shift?</h3><p>Mark your check-in to begin tracking your workday.</p></div>
+            <div class="attendance-status"><span class="status-dot neutral"></span><span id="attendanceStatus">Not checked in</span><b id="workTimer">—</b></div>
+            <button class="button button-light" id="quickCheckIn"><i data-icon="log-in"></i> Check in</button>
+          </section>
+
+          <section class="stats-grid" aria-label="Today's statistics">
+            <article class="stat-card"><div class="stat-icon blue"><i data-icon="users"></i></div><div><span>VISITORS IN</span><strong id="visitorsIn">24</strong><small class="positive"><i data-icon="trending-up"></i> 12% vs yesterday</small></div><button class="more-button">•••</button></article>
+            <article class="stat-card"><div class="stat-icon purple"><i data-icon="log-out"></i></div><div><span>VISITORS OUT</span><strong id="visitorsOut">16</strong><small class="muted">8 currently inside</small></div><button class="more-button">•••</button></article>
+            <article class="stat-card"><div class="stat-icon orange"><i data-icon="package"></i></div><div><span>MATERIALS IN</span><strong id="materialsIn">09</strong><small class="muted">3 pending verification</small></div><button class="more-button">•••</button></article>
+            <article class="stat-card"><div class="stat-icon green"><i data-icon="truck"></i></div><div><span>MATERIALS OUT</span><strong id="materialsOut">05</strong><small class="positive"><i data-icon="check"></i> All clear today</small></div><button class="more-button">•••</button></article>
+          </section>
+
+          <section class="section-head"><div><h2>Quick actions</h2><p>Manage your essential gate operations.</p></div><button class="text-button" data-page="records">View activity <i data-icon="arrow-right"></i></button></section>
+          <section class="quick-actions">
+            <button class="action-card attendance-action" data-page="attendance"><span class="action-icon"><i data-icon="clock"></i></span><span><b>Attendance</b><small>Check in &amp; track your shift</small></span><i data-icon="arrow-up-right"></i></button>
+            <button class="action-card inward-action" id="newVisitor"><span class="action-icon"><i data-icon="user-plus"></i></span><span><b>New inward entry</b><small>Register visitor or material</small></span><i data-icon="arrow-up-right"></i></button>
+            <button class="action-card outward-action" id="visitorExit"><span class="action-icon"><i data-icon="log-out"></i></span><span><b>Record exit</b><small>Complete visitor or material exit</small></span><i data-icon="arrow-up-right"></i></button>
+          </section>
+
+          <section class="panel turnaround-panel"><div class="panel-title"><div><h2>Inward turnaround by location</h2><p>Average time for material inward entries with recorded milestones.</p></div></div><div class="turnaround-grid" id="locationTurnaround"></div></section>
+
+          <section class="dashboard-lower">
+            <article class="panel activity-panel"><div class="panel-title"><div><h2>Recent activity</h2><p>Latest gate movements</p></div><button class="text-button" data-page="records">View all</button></div><div class="activity-list" id="activityList"></div></article>
+            <article class="panel occupancy-panel"><div class="panel-title"><div><h2>Gate occupancy</h2><p>Real-time visitor count</p></div><button class="small-round"><i data-icon="more-horizontal"></i></button></div><div class="occupancy-gauge"><div class="gauge"><div><strong>08</strong><span>inside now</span></div></div><div class="capacity"><b>Capacity status</b><span><i></i> 8 of 25 visitors</span></div></div><div class="occupancy-footer"><span><i data-icon="user-check"></i> 3 expected arrivals</span><button id="openQr"><i data-icon="scan-line"></i> Scan pass</button></div></article>
+          </section>
+        </section>
+
+        <section class="page" id="attendance">
+          <div class="page-heading compact"><div><p class="eyebrow">SHIFT MANAGEMENT</p><h1>Attendance</h1><p class="subhead">Check in securely and keep your shift on track.</p></div><button class="button button-primary" id="attendanceCheckAction"><i data-icon="log-in"></i> Mark check-in</button></div>
+          <section class="attendance-hero"><div class="attendance-photo"><span class="avatar avatar-xl">RK</span><span class="verified"><i data-icon="check"></i></span></div><div><p>RAHUL KUMAR · GATE 01</p><h2 id="attendanceHeroHeading">You are not checked in</h2><span class="attendance-note" id="attendanceHeroNote">Your Morning shift begins at 09:00 AM</span></div><div class="shift-badge"><i data-icon="sun"></i><span><small>CURRENT SHIFT</small><b>Morning · 09:00 – 17:00</b></span></div></section>
+          <section class="attendance-columns"><article class="panel"><div class="panel-title"><div><h2>Today's log</h2><p>Your attendance timeline</p></div><span class="date-chip">11 JUL 2026</span></div><div class="timeline" id="todayTimeline"><div class="timeline-empty"><i data-icon="clock-3"></i><p>No check-in recorded yet.</p></div></div></article><article class="panel location-panel"><div class="panel-title"><div><h2>Verification</h2><p>Secure attendance controls</p></div></div><div class="verification-item"><span><i data-icon="map-pin"></i></span><div><b>Gate location</b><small id="locationText">GPS capture available</small></div><label class="switch"><input id="locationSwitch" type="checkbox" checked /><i></i></label></div><div class="verification-item"><span><i data-icon="camera"></i></span><div><b>Selfie verification</b><small>Photo required on check-in</small></div><button class="small-text" id="takeSelfie">Capture</button></div></article></section>
+          <article class="panel attendance-history"><div class="panel-title"><div><h2>Attendance history</h2><p>Your last 7 days</p></div><button class="text-button"><i data-icon="download"></i> Export</button></div><div id="attendanceHistory"></div></article>
+        </section>
+
+        <section class="page" id="inward">
+          <div class="page-heading compact"><div><p class="eyebrow">GATE ENTRY</p><h1>Inward register</h1><p class="subhead">Log visitors, vehicles, and incoming materials.</p></div><button class="button button-primary" id="addInward"><i data-icon="plus"></i> New entry</button></div>
+          <div class="module-tabs"><button class="active" data-inward-tab="visitors"><i data-icon="users"></i> Visitor entry</button><button data-inward-tab="materials"><i data-icon="package"></i> Material inward</button></div>
+          <section class="records-toolbar"><label class="search-field"><i data-icon="search"></i><input class="record-search" data-target="inwardTable" placeholder="Search name, pass, vehicle..." /></label><button class="filter-button" id="inwardFiltersToggle" type="button" aria-expanded="false"><i data-icon="sliders-horizontal"></i> Filters</button><button class="export-button" data-export="inwardTable"><i data-icon="download"></i> Export</button></section>
+          <section class="table-filters" id="inwardFilterPanel" hidden aria-label="Inward table filters"><label>Entry date from (IST)<input id="inwardDateFrom" type="date" /></label><label>Entry date to (IST)<input id="inwardDateTo" type="date" /></label><label>Location<select id="inwardLocationFilter"></select></label><label>Status<select id="inwardStatusFilter" multiple size="1" title="Hold Ctrl (Windows) or Command (Mac) to select more than one status"></select></label><button class="button button-outline" id="clearInwardFilters" type="button">Clear filters</button></section>
+          <article class="panel table-panel"><div class="table-scroll"><table id="inwardTable"><thead id="inwardHead"><tr><th>VISITOR / VENDOR</th><th>PERSON TO MEET</th><th>PASS / VEHICLE</th><th>CHECK-IN DATE &amp; TIME (IST)</th><th>LOCATION</th><th>STATUS</th><th></th></tr></thead><tbody id="inwardBody"></tbody></table></div></article>
+        </section>
+
+        <section class="page" id="outward">
+          <div class="page-heading compact"><div><p class="eyebrow">GATE EXIT</p><h1>Outward register</h1><p class="subhead">Manage safe and authorized departures.</p></div><button class="button button-primary" id="addOutward"><i data-icon="plus"></i> Record exit</button></div>
+          <div class="module-tabs"><button class="active" data-outward-tab="visitors"><i data-icon="log-out"></i> Visitor exit</button><button data-outward-tab="materials"><i data-icon="truck"></i> Material outward</button></div>
+          <section class="records-toolbar"><label class="search-field"><i data-icon="search"></i><input class="record-search" data-target="outwardTable" placeholder="Search visitor, token, vehicle..." /></label><button class="filter-button" id="outwardFiltersToggle" type="button" aria-expanded="false"><i data-icon="sliders-horizontal"></i> Filters</button><button class="export-button" data-export="outwardTable"><i data-icon="download"></i> Export</button></section>
+          <section class="table-filters" id="outwardFilterPanel" hidden aria-label="Outward table filters"><label>Entry date from (IST)<input id="outwardDateFrom" type="date" /></label><label>Entry date to (IST)<input id="outwardDateTo" type="date" /></label><label>Location<select id="outwardLocationFilter"></select></label><label>Status<select id="outwardStatusFilter" multiple size="1" title="Hold Ctrl (Windows) or Command (Mac) to select more than one status"></select></label><button class="button button-outline" id="clearOutwardFilters" type="button">Clear filters</button></section>
+          <article class="panel table-panel"><div class="table-scroll"><table id="outwardTable"><thead id="outwardHead"><tr><th>VENDOR NAME</th><th>SALE INVOICE NO.</th><th>UNIQUE TOKEN NO.</th><th>POD</th><th>VEHICLE</th><th>EXIT DATE &amp; TIME (IST)</th><th>LOCATION</th><th>STATUS</th><th></th></tr></thead><tbody id="outwardBody"></tbody></table></div></article>
+        </section>
+
+        <section class="page" id="records">
+          <div class="page-heading compact"><div><p class="eyebrow">ALL MOVEMENTS</p><h1>Records</h1><p class="subhead">Search, filter, and export complete gate activity.</p></div><div class="heading-buttons"><button class="button button-outline" id="printRecords"><i data-icon="file-text"></i> PDF</button><button class="button button-primary" data-export="recordsTable"><i data-icon="download"></i> Excel</button></div></div>
+          <section class="records-toolbar multi"><label class="search-field"><i data-icon="search"></i><input class="record-search" data-target="recordsTable" placeholder="Search all activity..." /></label><button class="filter-button active-filter"><i data-icon="calendar-days"></i> Today</button><button class="filter-button">All types <i data-icon="chevron-down"></i></button><button class="filter-button">All status <i data-icon="chevron-down"></i></button></section>
+          <article class="panel table-panel"><div class="table-scroll"><table id="recordsTable"><thead><tr><th>TYPE</th><th>NAME / DESCRIPTION</th><th>REFERENCE</th><th>TIME</th><th>LOCATION</th><th>STATUS</th><th></th></tr></thead><tbody id="recordsBody"></tbody></table></div></article>
+        </section>
+
+        <section class="page" id="settings"><div class="page-heading compact"><div><p class="eyebrow">PREFERENCES</p><h1>Settings</h1><p class="subhead">Configure your SecureGate experience.</p></div></div><div class="settings-grid"><article class="panel"><h2>Appearance</h2><p>Choose a display that suits your shift.</p><div class="setting-row"><span><i data-icon="moon"></i> Dark mode</span><label class="switch"><input class="theme-toggle-input" type="checkbox" /><i></i></label></div></article><article class="panel"><h2>Notifications</h2><p>Stay informed about gate activity.</p><div class="setting-row"><span><i data-icon="bell"></i> Visitor alerts</span><label class="switch"><input type="checkbox" checked /><i></i></label></div></article><article class="panel access-panel"><h2>Location access</h2><p>Every standard user is limited to one location. Admin can view and work across all locations.</p><label class="settings-label" for="accessPreview">Signed in as<select id="accessPreview" disabled></select></label><div class="access-scope" id="accessScope"></div><button class="button button-outline" type="button" id="logoutButton">Sign out</button></article><article class="panel location-master-panel" id="locationMasterPanel"><h2>Locations</h2><p>Add locations that Admin can assign to new users and entries.</p><form class="party-editor" id="locationForm"><label>Location name <span aria-hidden="true">*</span><input id="locationNameInput" required placeholder="Add location" /></label><button class="button button-outline" type="submit">Add location</button><div class="party-list" id="locationList"></div></form></article><article class="panel user-master-panel" id="userMasterPanel"><h2>User access</h2><p>Create a standard user and assign exactly one location.</p><form class="party-editor" id="userForm"><label>User name <span aria-hidden="true">*</span><input id="userNameInput" required placeholder="Add user name" /></label><label>Login ID <span aria-hidden="true">*</span><input id="userLoginIdInput" required autocomplete="off" placeholder="Create login ID" /></label><label>Assigned location <span aria-hidden="true">*</span><select id="userLocationSelect" required></select></label><label>Initial password <span aria-hidden="true">*</span><input id="userPasswordInput" type="password" minlength="6" required autocomplete="new-password" placeholder="Set initial password" /></label><button class="button button-outline" type="submit">Create user</button><div class="party-list" id="userList"></div></form></article><article class="panel password-reset-panel" id="passwordResetPanel"><h2>Password reset</h2><p>Admin can reset a password for any user, including the Admin account.</p><form class="party-editor" id="passwordResetForm"><label>User<select id="passwordResetUser" required></select></label><label>New password<input id="newPasswordInput" type="password" minlength="6" required autocomplete="new-password" placeholder="Enter new password" /></label><button class="button button-outline" type="submit">Reset password</button></form></article><article class="panel master-data-panel" id="masterDataPanel"><h2>Vendor &amp; customer lists</h2><p>Edit the names shown in the Material Inward and Material Outward dropdowns.</p><div class="party-lists" id="partyLists"><form class="party-editor" id="vendorForm"><label>Vendor name <span aria-hidden="true">*</span><input id="vendorNameInput" required placeholder="Add vendor name" /></label><button class="button button-outline" type="submit">Add vendor</button><div class="party-list" id="vendorList"></div></form><form class="party-editor" id="customerForm"><label>Customer name <span aria-hidden="true">*</span><input id="customerNameInput" required placeholder="Add customer name" /></label><button class="button button-outline" type="submit">Add customer</button><div class="party-list" id="customerList"></div></form></div></article></div></section>
+      </main>
+    </div>
+
+    <div class="modal-backdrop" id="modalBackdrop" aria-hidden="true">
+      <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <div class="modal-header"><div><p class="eyebrow" id="modalEyebrow">GATE MANAGEMENT</p><h2 id="modalTitle">New visitor entry</h2></div><button class="icon-button modal-close" aria-label="Close"><i data-icon="x"></i></button></div>
+        <div class="modal-tabs" id="modalTabs"><button class="active" data-form="visitor">Visitor</button><button data-form="material">Material</button></div>
+        <form id="entryForm">
+          <div class="entry-location"><label>Location <span class="required-mark" aria-hidden="true">*</span><select id="entryLocation" name="location" required></select></label></div>
+          <div class="form-view active" data-form-view="visitor">
+            <div class="form-grid"><label>Visitor name<input name="visitorName" required placeholder="Enter full name" /></label><label>Mobile number<input name="mobile" type="tel" placeholder="Enter mobile number" /></label><label>Company name<input name="company" placeholder="Enter company" /></label><label>Person to meet<input name="host" placeholder="Select employee" /></label><label>Department<select name="department"><option>Operations</option><option>Administration</option><option>Warehouse</option><option>Finance</option></select></label><label>Purpose of visit<select name="purpose"><option>Business meeting</option><option>Delivery</option><option>Interview</option><option>Maintenance</option></select></label><label>ID proof type<select name="idType"><option>Aadhaar card</option><option>Driving licence</option><option>Passport</option><option>Voter ID</option></select></label><label>ID number<input name="idNumber" placeholder="Enter ID number" /></label><label>Vehicle number <small>(optional)</small><input name="vehicle" placeholder="e.g. MH 12 AB 1234" /></label><label>Number of visitors<input name="count" type="number" min="1" value="1" /></label></div><div class="photo-box"><div><i data-icon="camera"></i><span>Visitor photo</span><small>Optional verification</small></div><button type="button" class="button button-outline photo-capture"><i data-icon="camera"></i> Capture photo</button></div></div>
+          <div class="form-view" data-form-view="material">
+            <div class="form-grid"><label><span id="partyLabel">Vendor name</span><span class="required-mark" aria-hidden="true">*</span><select id="partyName" name="vendorName" required><option value="" selected disabled>Select vendor</option><option>Apex Trading Co.</option><option>Bluebird Logistics</option><option>Vertex Supply</option></select></label><label><span id="documentNumberLabel">GRN number</span> <small>(optional)</small><input id="documentNumber" name="documentNumber" placeholder="Enter GRN number" /></label><label>Boxes <span class="required-mark" aria-hidden="true">*</span><input id="quantity" name="quantity" type="text" inputmode="numeric" pattern="[0-9]+" required placeholder="Enter number of boxes" /></label><label><span id="invoiceNumberLabel">Purchase invoice number</span> <span class="required-mark" aria-hidden="true">*</span><input id="purchaseInvoiceNumber" name="purchaseInvoiceNumber" type="text" inputmode="text" pattern="\S+" required placeholder="Enter purchase invoice number" /></label><label id="podField" hidden>POD received <span class="required-mark" aria-hidden="true">*</span><select id="podReceived" name="podReceived" disabled><option value="no" selected>No</option><option value="yes">Yes</option></select></label><label>Vehicle number <span class="required-mark" aria-hidden="true">*</span><input name="materialVehicle" required placeholder="e.g. MH 12 AB 1234" /></label><label>Driver name <span class="required-mark" aria-hidden="true">*</span><input name="driverName" required placeholder="Enter driver name" /></label><label>Driver mobile <span class="required-mark" aria-hidden="true">*</span><input id="driverMobile" name="driverMobile" type="tel" inputmode="numeric" pattern="[0-9]{10}" minlength="10" maxlength="10" required placeholder="Enter 10-digit mobile number" /></label><label>Remarks <small>(optional)</small><input name="remarks" placeholder="Any note for the record" /></label></div></div>
+          <div class="modal-footer"><button type="button" class="button button-outline modal-close">Cancel</button><button type="submit" class="button button-primary" id="entrySubmit"><i data-icon="scan-line"></i> Generate pass &amp; save</button></div>
+        </form>
+      </div>
+    </div>
+
+    <div class="toast" id="toast"><i data-icon="check-circle-2"></i><span id="toastText">Entry saved successfully</span></div>
+    <script src="app.js"></script>
+  </body>
+</html>
